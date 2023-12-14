@@ -1,14 +1,18 @@
 package com.voyager.controller;
 
 import com.voyager.dto.TodayAdd;
+import com.voyager.entity.Today;
 import com.voyager.mapper.TodayMapper;
 import com.voyager.result.Result;
 import com.voyager.service.TodayService;
 import com.voyager.vo.TodayQueryVo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @ClassName TodayController
@@ -27,19 +31,27 @@ public class TodayController {
     private TodayService todayService;
 
     @PostMapping("/add")
-    public Result addTODO(@RequestBody TodayAdd todayAdd) {
+    public Result add(@RequestBody TodayAdd todayAdd) {
         log.info("添加今日代办：{}", todayAdd);
 
-        todayService.addTODO(todayAdd);
+        todayService.add(todayAdd);
         return Result.success();
     }
 
     @GetMapping("/query")
-    public Result<TodayQueryVo> queryTODO() {
+    public Result<List<Today>> query() {
         log.info("查询今日代办");
 
-        TodayQueryVo todayQueryVo = todayService.queryTODO();
-        return Result.success(todayQueryVo);
+        List<Today> todayList = todayService.query();
+        return Result.success(todayList);
     }
 
+    @GetMapping("/query/{id}")
+    @ApiOperation("根据id查询今日代办")
+    public Result<TodayQueryVo> queryById(@PathVariable("id") Long id) {
+        log.info("根据id查询今日代办：{}", id);
+
+        TodayQueryVo todayQueryVo = todayService.queryById(id);
+        return Result.success(todayQueryVo);
+    }
 }

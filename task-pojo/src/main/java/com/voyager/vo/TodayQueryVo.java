@@ -20,9 +20,14 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(description = "今日代办查询返回的数据格式")
 public class TodayQueryVo {
 
-    private List<Today> todayList;
+    private Long id;
+
+    private String name;
+
+    private Long tagId;
+
+    private Integer priority;
 
 }

@@ -1,6 +1,6 @@
 package com.voyager;
 
-import com.voyager.mapper.EmployeeMapper;
+import com.voyager.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,11 +18,11 @@ import java.time.LocalDate;
 public class dbTest {
 
     @Autowired
-    private EmployeeMapper employeeMapper;
+    private UserMapper userMapper;
 
     @Test
     public void test() throws Exception {
-        System.out.println(employeeMapper.login("admin"));
+        System.out.println(userMapper.login("admin"));
     }
 
     @Test

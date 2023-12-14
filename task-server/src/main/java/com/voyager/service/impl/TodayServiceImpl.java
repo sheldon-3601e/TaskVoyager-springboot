@@ -26,7 +26,7 @@ public class TodayServiceImpl implements TodayService {
     private TodayMapper todayMapper;
 
     @Override
-    public void addTODO(TodayAdd todayAdd) {
+    public void add(TodayAdd todayAdd) {
         Long id = System.currentTimeMillis();
         Today today = Today.builder()
                 .id(id)
@@ -37,20 +37,28 @@ public class TodayServiceImpl implements TodayService {
                 .tagId(todayAdd.getTagId())
                 .priority(1)
                 .build();
-        todayMapper.addTODO(today);
+        todayMapper.add(today);
     }
 
     @Override
-    public TodayQueryVo queryTODO() {
+    public List<Today> query() {
         Long userId = 1L;
         LocalDate today = LocalDate.now();
         TodayQueryDTO todayQueryDTO = new TodayQueryDTO();
         todayQueryDTO.setUserId(userId);
         todayQueryDTO.setLocalDate(today);
 
-        List<Today> todayList = todayMapper.queryTODO(todayQueryDTO);
+        return todayMapper.query(todayQueryDTO);
+    }
+
+    @Override
+    public TodayQueryVo queryById(Long id) {
+        Today today = todayMapper.queryById(id);
         return TodayQueryVo.builder()
-                .todayList(todayList)
+                .id(today.getId())
+                .name(today.getName())
+                .tagId(today.getTagId())
+                .priority(today.getPriority())
                 .build();
     }
 }

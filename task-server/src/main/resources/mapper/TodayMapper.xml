@@ -4,13 +4,13 @@
 <mapper namespace="com.voyager.mapper.TodayMapper">
 
 
-    <insert id="addTODO">
+    <insert id="add">
         insert into today
             (id, user_id, tag_id, name, priority, status, create_time)
         values (#{id}, #{userId}, #{tagId}, #{name}, #{priority}, #{status}, #{createTime})
     </insert>
 
-    <select id="queryTODO" resultType="Today">
+    <select id="query" resultType="Today">
         select * from today
                  where user_id = #{userId} and DATE(create_time) = #{localDate}
     </select>

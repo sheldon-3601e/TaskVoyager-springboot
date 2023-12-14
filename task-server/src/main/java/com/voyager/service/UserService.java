@@ -8,7 +8,7 @@ import com.voyager.entity.User;
 * @description 针对表【employee】的数据库操作Service
 * @createDate 2023-12-13 16:25:33
 */
-public interface EmployeeService {
+public interface UserService {
 
     /**
      * 用户登录

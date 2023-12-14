@@ -4,8 +4,8 @@ import com.voyager.constant.MessageConstant;
 import com.voyager.dto.EmployeeLoginDTO;
 import com.voyager.entity.User;
 import com.voyager.exception.LoginFailedException;
-import com.voyager.mapper.EmployeeMapper;
-import com.voyager.service.EmployeeService;
+import com.voyager.mapper.UserMapper;
+import com.voyager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
  * @createDate 2023-12-13 16:25:33
  */
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private EmployeeMapper employeeMapper;
+    private UserMapper userMapper;
 
     @Override
     public User login(EmployeeLoginDTO employeeLoginDTO) {
@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         String username = employeeLoginDTO.getUsername();
         String password = employeeLoginDTO.getPassword();
 
-        User user = employeeMapper.login(username);
+        User user = userMapper.login(username);
         if (user == null) {
             throw new LoginFailedException(MessageConstant.ACCOUNT_NOT_FOUND);
         }

@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Select;
 * @Entity generator.employee.Employee
 */
 @Mapper
-public interface EmployeeMapper {
+public interface UserMapper {
 
     @Select("select * from user where username = #{username}")
     User login(String username);

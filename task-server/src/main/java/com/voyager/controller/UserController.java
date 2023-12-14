@@ -3,7 +3,7 @@ package com.voyager.controller;
 import com.voyager.dto.EmployeeLoginDTO;
 import com.voyager.entity.User;
 import com.voyager.result.Result;
-import com.voyager.service.EmployeeService;
+import com.voyager.service.UserService;
 import com.voyager.vo.EmployeeLoginVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,17 +25,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 @Slf4j
 @Api(tags = "用户相关接口")
-public class EmployeeController {
+public class UserController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private UserService userService;
 
     @PostMapping("/login")
     @ApiOperation(value = "用户登录")
     public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
         log.info("用户登录：{}", employeeLoginDTO);
 
-        User user = employeeService.login(employeeLoginDTO);
+        User user = userService.login(employeeLoginDTO);
 
         // TODO 登录成功后，生成jwt令牌
 
