@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+
 /**
  * @ClassName com.voyager.dbTest
  * @Author 26483
@@ -21,6 +23,13 @@ public class dbTest {
     @Test
     public void test() throws Exception {
         System.out.println(employeeMapper.login("admin"));
+    }
+
+    @Test
+    public void test02() {
+        LocalDate today = LocalDate.now();
+
+        System.out.println("今天的日期是: " + today);
     }
 
 }

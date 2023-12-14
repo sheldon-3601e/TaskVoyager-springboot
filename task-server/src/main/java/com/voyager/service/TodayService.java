@@ -2,6 +2,7 @@ package com.voyager.service;
 
 
 import com.voyager.dto.TodayAdd;
+import com.voyager.vo.TodayQueryVo;
 
 /**
 * @author 26483
@@ -15,4 +16,10 @@ public interface TodayService {
      * @param todayAdd
      */
     void addTODO(TodayAdd todayAdd);
+
+    /**
+     * 查询今日代办
+     * @return
+     */
+    TodayQueryVo queryTODO();
 }

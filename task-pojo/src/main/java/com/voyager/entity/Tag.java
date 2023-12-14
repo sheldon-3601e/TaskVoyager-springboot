@@ -20,7 +20,7 @@ public class Tag implements Serializable {
     /**
      * 
      */
-    private byte[] id;
+    private Long id;
 
     /**
      * 
@@ -40,6 +40,6 @@ public class Tag implements Serializable {
     /**
      * 
      */
-    private byte[] empId;
+    private Long empId;
 
 }

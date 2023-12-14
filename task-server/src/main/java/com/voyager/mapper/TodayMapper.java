@@ -1,9 +1,12 @@
 package com.voyager.mapper;
 
 
+import com.voyager.dto.TodayQueryDTO;
 import com.voyager.entity.Today;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author 26483
@@ -14,7 +17,9 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface TodayMapper {
 
-    void addTODO(@Param("today") Today today);
+    void addTODO(Today today);
+
+    List<Today> queryTODO(TodayQueryDTO todayQueryDTO);
 }
 
 
