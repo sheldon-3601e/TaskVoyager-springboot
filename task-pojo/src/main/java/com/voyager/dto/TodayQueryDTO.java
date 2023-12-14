@@ -20,4 +20,6 @@ public class TodayQueryDTO {
     private Long userId;
 
     private LocalDate localDate;
+
+    private Integer status;
 }

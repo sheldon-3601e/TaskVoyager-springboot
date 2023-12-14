@@ -1,18 +1,16 @@
 package com.voyager.vo;
 
-import com.voyager.entity.Today;
-import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
- * @ClassName TodayQueryVo
+ * @ClassName TodayUncompletedVO
  * @Author 26483
- * @Date 2023/12/14 17:10
+ * @Date 2023/12/14 19:59
  * @Version 1.0
  * @Description TODO
  */
@@ -20,14 +18,10 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TodayQueryVo {
+public class TodayQueryUncompletedVO implements Serializable {
 
     private Long id;
 
     private String name;
-
-    private Long tagId;
-
-    private Integer priority;
 
 }

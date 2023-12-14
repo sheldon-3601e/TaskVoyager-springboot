@@ -7,12 +7,14 @@ import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
 import com.voyager.mapper.TodayMapper;
 import com.voyager.service.TodayService;
-import com.voyager.vo.TodayQueryVo;
+import com.voyager.vo.TodayQueryCompletedVO;
+import com.voyager.vo.TodayQueryUncompletedVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,20 +44,22 @@ public class TodayServiceImpl implements TodayService {
     }
 
     @Override
-    public List<Today> query() {
+    public List<Today> queryCompleted() {
+        // TODO 获取用户id
         Long userId = 1L;
         LocalDate today = LocalDate.now();
         TodayQueryDTO todayQueryDTO = new TodayQueryDTO();
         todayQueryDTO.setUserId(userId);
         todayQueryDTO.setLocalDate(today);
+        todayQueryDTO.setStatus(1);
 
         return todayMapper.query(todayQueryDTO);
     }
 
     @Override
-    public TodayQueryVo queryById(Long id) {
+    public TodayQueryCompletedVO queryById(Long id) {
         Today today = todayMapper.queryById(id);
-        return TodayQueryVo.builder()
+        return TodayQueryCompletedVO.builder()
                 .id(today.getId())
                 .name(today.getName())
                 .tagId(today.getTagId())
@@ -78,6 +82,28 @@ public class TodayServiceImpl implements TodayService {
     @Override
     public void completeById(Long id) {
         todayMapper.completeById(id);
+    }
+
+    @Override
+    public List<TodayQueryUncompletedVO> queryUncompleted() {
+        // TODO 获取用户id
+        Long userId = 1L;
+        LocalDate today = LocalDate.now();
+        TodayQueryDTO todayQueryDTO = new TodayQueryDTO();
+        todayQueryDTO.setUserId(userId);
+        todayQueryDTO.setLocalDate(today);
+        todayQueryDTO.setStatus(2);
+
+        List<Today> todayList = todayMapper.query(todayQueryDTO);
+        List<TodayQueryUncompletedVO> list = new ArrayList<>();
+        for (Today t : todayList) {
+            TodayQueryUncompletedVO todayQueryUncompletedVO = TodayQueryUncompletedVO.builder()
+                    .id(t.getId())
+                    .name(t.getName())
+                    .build();
+            list.add(todayQueryUncompletedVO);
+        }
+        return list;
     }
 }
 
