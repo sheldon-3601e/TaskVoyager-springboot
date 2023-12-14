@@ -74,6 +74,11 @@ public class TodayServiceImpl implements TodayService {
     public void deleteById(Long id) {
         todayMapper.deleteById(id);
     }
+
+    @Override
+    public void completeById(Long id) {
+        todayMapper.completeById(id);
+    }
 }
 
 

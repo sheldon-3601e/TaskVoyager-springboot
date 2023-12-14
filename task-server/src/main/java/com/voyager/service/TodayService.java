@@ -46,4 +46,10 @@ public interface TodayService {
      * @param id
      */
     void deleteById(Long id);
+
+    /**
+     * 根据id完成今日代办
+     * @param id
+     */
+    void completeById(Long id);
 }

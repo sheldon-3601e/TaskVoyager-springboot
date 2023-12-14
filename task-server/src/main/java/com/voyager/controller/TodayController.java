@@ -74,4 +74,13 @@ public class TodayController {
         return Result.success();
     }
 
+    @PostMapping("/complete/{id}")
+    @ApiOperation("根据id完成今日代办")
+    public Result completeById(@PathVariable Long id) {
+        log.info("根据id完成今日代办：{}", id);
+
+        todayService.completeById(id);
+        return Result.success();
+    }
+
 }

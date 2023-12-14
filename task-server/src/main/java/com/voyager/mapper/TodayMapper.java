@@ -4,10 +4,7 @@ package com.voyager.mapper;
 import com.voyager.dto.TodayQueryDTO;
 import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -31,6 +28,9 @@ public interface TodayMapper {
 
     @Delete("delete from today where id = #{id}")
     void deleteById(Long id);
+
+    @Update("update today set status = 2 where id = #{id}")
+    void completeById(Long id);
 }
 
 
