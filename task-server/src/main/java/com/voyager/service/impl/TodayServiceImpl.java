@@ -3,6 +3,7 @@ package com.voyager.service.impl;
 
 import com.voyager.dto.TodayAdd;
 import com.voyager.dto.TodayQueryDTO;
+import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
 import com.voyager.mapper.TodayMapper;
 import com.voyager.service.TodayService;
@@ -60,6 +61,18 @@ public class TodayServiceImpl implements TodayService {
                 .tagId(today.getTagId())
                 .priority(today.getPriority())
                 .build();
+    }
+
+    @Override
+    public void updateById(TodayUpdateDTO todayUpdateDTO) {
+
+        todayMapper.updateById(todayUpdateDTO);
+
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        todayMapper.deleteById(id);
     }
 }
 

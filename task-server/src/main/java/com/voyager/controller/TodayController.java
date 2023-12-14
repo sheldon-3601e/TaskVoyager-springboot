@@ -1,6 +1,7 @@
 package com.voyager.controller;
 
 import com.voyager.dto.TodayAdd;
+import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
 import com.voyager.mapper.TodayMapper;
 import com.voyager.result.Result;
@@ -54,4 +55,23 @@ public class TodayController {
         TodayQueryVo todayQueryVo = todayService.queryById(id);
         return Result.success(todayQueryVo);
     }
+
+    @PostMapping("/update")
+    @ApiOperation("根据id修改今日代办")
+    public Result updateById(@RequestBody TodayUpdateDTO todayUpdateDTO) {
+        log.info("根据id修改今日代办：{}", todayUpdateDTO);
+
+        todayService.updateById(todayUpdateDTO);
+        return Result.success();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ApiOperation("根据id删除今日代办")
+    public Result deleteById(@PathVariable Long id) {
+        log.info("根据id删除今日代办：{}", id);
+
+        todayService.deleteById(id);
+        return Result.success();
+    }
+
 }

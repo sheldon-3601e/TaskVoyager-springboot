@@ -38,7 +38,7 @@ public class Today implements Serializable {
     // 优先级，1：低，2：中，3：高
     private Integer priority;
 
-    // 状态，1：未完成，2：已完成，3：已删除
+    // 状态，1：未完成，2：已完成
     private Integer status;
 
     // 创建时间

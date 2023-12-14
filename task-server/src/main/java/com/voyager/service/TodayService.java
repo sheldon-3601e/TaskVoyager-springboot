@@ -2,6 +2,7 @@ package com.voyager.service;
 
 
 import com.voyager.dto.TodayAdd;
+import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
 import com.voyager.vo.TodayQueryVo;
 
@@ -33,4 +34,16 @@ public interface TodayService {
      * @return
      */
     TodayQueryVo queryById(Long id);
+
+    /**
+     * 根据Id修改今日代办
+     * @param todayUpdateDTO
+     */
+    void updateById(TodayUpdateDTO todayUpdateDTO);
+
+    /**
+     * 根据id删除今日代办
+     * @param id
+     */
+    void deleteById(Long id);
 }

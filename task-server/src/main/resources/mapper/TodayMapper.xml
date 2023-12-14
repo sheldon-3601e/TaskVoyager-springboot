@@ -9,6 +9,15 @@
             (id, user_id, tag_id, name, priority, status, create_time)
         values (#{id}, #{userId}, #{tagId}, #{name}, #{priority}, #{status}, #{createTime})
     </insert>
+    <update id="updateById">
+        update today
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="priority != null">priority = #{priority},</if>
+            <if test="tagId != null">tag_id = #{tagId},</if>
+        </set>
+        where id = #{id}
+    </update>
 
     <select id="query" resultType="Today">
         select * from today
