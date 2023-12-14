@@ -4,8 +4,8 @@ package com.voyager.service;
 import com.voyager.dto.TodayAdd;
 import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
+import com.voyager.vo.TodayByIdVO;
 import com.voyager.vo.TodayQueryCompletedVO;
-import com.voyager.vo.TodayQueryUncompletedVO;
 
 import java.util.List;
 
@@ -27,14 +27,15 @@ public interface TodayService {
      *
      * @return
      */
-    List<Today> queryCompleted();
+    List<TodayQueryCompletedVO> queryCompleted();
 
     /**
      * 根据id查询今日代办
+     *
      * @param id
      * @return
      */
-    TodayQueryCompletedVO queryById(Long id);
+    TodayByIdVO queryById(Long id);
 
     /**
      * 根据Id修改今日代办
@@ -59,6 +60,6 @@ public interface TodayService {
      *
      * @return
      */
-    List<TodayQueryUncompletedVO> queryUncompleted();
+    List<Today> queryUncompleted();
 
 }

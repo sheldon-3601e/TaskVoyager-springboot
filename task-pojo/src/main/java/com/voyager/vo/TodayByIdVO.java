@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * @ClassName TodayUncompletedVO
+ * @ClassName TodayByIdVO
  * @Author 26483
- * @Date 2023/12/14 19:59
+ * @Date 2023/12/14 22:31
  * @Version 1.0
  * @Description TODO
  */
@@ -18,10 +18,14 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TodayQueryUncompletedVO implements Serializable {
+public class TodayByIdVO implements Serializable {
 
     private Long id;
 
     private String name;
+
+    private Long tagId;
+
+    private Integer priority;
 
 }

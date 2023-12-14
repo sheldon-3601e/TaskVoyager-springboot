@@ -5,8 +5,8 @@ import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
 import com.voyager.result.Result;
 import com.voyager.service.TodayService;
+import com.voyager.vo.TodayByIdVO;
 import com.voyager.vo.TodayQueryCompletedVO;
-import com.voyager.vo.TodayQueryUncompletedVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -39,31 +39,31 @@ public class TodayController {
         return Result.success();
     }
 
-    @GetMapping("/query/completed")
+    @GetMapping("/query/uncompleted")
     @ApiOperation("查询今日代办-未完成")
-    public Result<List<Today>> queryCompleted() {
+    public Result<List<Today>> queryUncompleted() {
         log.info("查询今日代办-未完成");
 
-        List<Today> todayList = todayService.queryCompleted();
+        List<Today> todayList = todayService.queryUncompleted();
         return Result.success(todayList);
     }
 
-    @GetMapping("/query/uncompleted")
+    @GetMapping("/query/completed")
     @ApiOperation("查询今日代办-已完成")
-    public Result<List<TodayQueryUncompletedVO>> queryUncompleted() {
+    public Result<List<TodayQueryCompletedVO>> queryCompleted() {
         log.info("查询今日代办-已完成");
 
-        List<TodayQueryUncompletedVO> uncompletedVOList = todayService.queryUncompleted();
+        List<TodayQueryCompletedVO> uncompletedVOList = todayService.queryCompleted();
         return Result.success(uncompletedVOList);
     }
 
     @GetMapping("/query/{id}")
     @ApiOperation("根据id查询今日代办")
-    public Result<TodayQueryCompletedVO> queryById(@PathVariable("id") Long id) {
+    public Result<TodayByIdVO> queryById(@PathVariable("id") Long id) {
         log.info("根据id查询今日代办：{}", id);
 
-        TodayQueryCompletedVO todayQueryCompletedVO = todayService.queryById(id);
-        return Result.success(todayQueryCompletedVO);
+        TodayByIdVO todayByIdVO = todayService.queryById(id);
+        return Result.success(todayByIdVO);
     }
 
     @PostMapping("/update")
@@ -84,7 +84,7 @@ public class TodayController {
         return Result.success();
     }
 
-    @PostMapping("/complete/{id}")
+    @PutMapping("/complete/{id}")
     @ApiOperation("根据id完成今日代办")
     public Result completeById(@PathVariable Long id) {
         log.info("根据id完成今日代办：{}", id);
