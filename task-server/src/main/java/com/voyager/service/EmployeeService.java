@@ -1,7 +1,7 @@
 package com.voyager.service;
 
 import com.voyager.dto.EmployeeLoginDTO;
-import com.voyager.entity.Employee;
+import com.voyager.entity.User;
 
 /**
 * @author 26483
@@ -15,5 +15,5 @@ public interface EmployeeService {
      * @param employeeLoginDTO
      * @return
      */
-    Employee login(EmployeeLoginDTO employeeLoginDTO);
+    User login(EmployeeLoginDTO employeeLoginDTO);
 }

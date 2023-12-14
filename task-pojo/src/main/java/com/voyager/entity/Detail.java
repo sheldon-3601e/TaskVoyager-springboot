@@ -6,54 +6,42 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Arrays;
 
 /**
  * 
- * @TableName employee
+ * @TableName detail
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee implements Serializable {
+public class Detail implements Serializable {
+    /**
+     * 
+     */
 
-    private Long id;
+    private byte[] id;
 
     /**
      * 
      */
-    private String username;
+    private String name;
 
     /**
      * 
      */
-    private String password;
+    private Integer status;
 
     /**
      * 
      */
-    private Integer sex;
+    private byte[] empId;
 
     /**
      * 
      */
-    private String phone;
-
-    /**
-     * 
-     */
-    private Date createTime;
-
-    /**
-     * 
-     */
-    private String blank01;
-
-    /**
-     * 
-     */
-    private String blank02;
+    private byte[] futureId;
 
 
 

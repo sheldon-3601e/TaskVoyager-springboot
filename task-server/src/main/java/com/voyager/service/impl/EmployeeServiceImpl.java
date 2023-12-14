@@ -2,7 +2,7 @@ package com.voyager.service.impl;
 
 import com.voyager.constant.MessageConstant;
 import com.voyager.dto.EmployeeLoginDTO;
-import com.voyager.entity.Employee;
+import com.voyager.entity.User;
 import com.voyager.exception.LoginFailedException;
 import com.voyager.mapper.EmployeeMapper;
 import com.voyager.service.EmployeeService;
@@ -21,19 +21,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeMapper employeeMapper;
 
     @Override
-    public Employee login(EmployeeLoginDTO employeeLoginDTO) {
+    public User login(EmployeeLoginDTO employeeLoginDTO) {
 
         String username = employeeLoginDTO.getUsername();
         String password = employeeLoginDTO.getPassword();
 
-        Employee employee = employeeMapper.login(username);
-        if (employee == null) {
+        User user = employeeMapper.login(username);
+        if (user == null) {
             throw new LoginFailedException(MessageConstant.ACCOUNT_NOT_FOUND);
         }
-        if (!employee.getPassword().equals(password)) {
+        if (!user.getPassword().equals(password)) {
             throw new LoginFailedException(MessageConstant.PASSWORD_ERROR);
         }
-        return employee;
+        return user;
     }
 }
 

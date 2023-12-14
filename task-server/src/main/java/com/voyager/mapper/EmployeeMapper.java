@@ -1,6 +1,6 @@
 package com.voyager.mapper;
 
-import com.voyager.entity.Employee;
+import com.voyager.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -13,8 +13,8 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface EmployeeMapper {
 
-    @Select("select * from employee where username = #{username}")
-    Employee login(String username);
+    @Select("select * from user where username = #{username}")
+    User login(String username);
 }
 
 
