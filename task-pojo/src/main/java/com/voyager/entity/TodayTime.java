@@ -51,7 +51,7 @@ public class TodayTime implements Serializable {
     /**
      *
      */
-    private Long empId;
+    private Long userId;
 
     /**
      *

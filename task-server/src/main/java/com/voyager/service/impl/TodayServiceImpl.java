@@ -1,11 +1,14 @@
 package com.voyager.service.impl;
 
 
+import com.voyager.constant.StatusConstant;
 import com.voyager.dto.TodayAdd;
 import com.voyager.dto.TodayQueryDTO;
 import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
+import com.voyager.entity.TodayTime;
 import com.voyager.mapper.TodayMapper;
+import com.voyager.mapper.TodayTimeMapper;
 import com.voyager.service.TodayService;
 import com.voyager.vo.TodayByIdVO;
 import com.voyager.vo.TodayQueryCompletedVO;
@@ -27,20 +30,36 @@ public class TodayServiceImpl implements TodayService {
 
     @Autowired
     private TodayMapper todayMapper;
+    @Autowired
+    private TodayTimeMapper todayTimeMapper;
 
     @Override
     public void add(TodayAdd todayAdd) {
+        // TODO 获取用户id
+        Long userId = 1L;
+        // 生成时间戳作为id
         Long id = System.currentTimeMillis();
         Today today = Today.builder()
                 .id(id)
                 .name(todayAdd.getName())
                 .status(1)
                 .createTime(LocalDateTime.now())
-                .userId(1L)
+                .userId(userId)
                 .tagId(todayAdd.getTagId())
                 .priority(1)
                 .build();
+        // 添加今日代办
         todayMapper.add(today);
+
+        // TODO 添加今日代办时间
+        id = System.currentTimeMillis();
+        TodayTime todayTime = TodayTime.builder()
+                .id(id)
+                .userId(userId)
+                .tagId(todayAdd.getTagId())
+                .todayId(today.getId())
+                .build();
+        todayTimeMapper.save(todayTime);
     }
 
     @Override
@@ -87,11 +106,13 @@ public class TodayServiceImpl implements TodayService {
     @Override
     public void deleteById(Long id) {
         todayMapper.deleteById(id);
+
+        // TODO 删除今日代办时间
     }
 
     @Override
     public void completeById(Long id) {
-        todayMapper.completeById(id);
+        todayMapper.updateStatusById(id, StatusConstant.COMPLETED);
     }
 
     @Override

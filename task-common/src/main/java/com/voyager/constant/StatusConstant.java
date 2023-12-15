@@ -5,9 +5,12 @@ package com.voyager.constant;
  */
 public class StatusConstant {
 
-    //启用
-    public static final Integer ENABLE = 1;
+    //未完成
+    public static final Integer UNCOMPLETED = 1;
 
-    //禁用
-    public static final Integer DISABLE = 0;
+    //已完成
+    public static final Integer COMPLETED = 2;
+
+    // 进行中
+    public static final Integer DOING = 3;
 }

@@ -29,8 +29,8 @@ public interface TodayMapper {
     @Delete("delete from today where id = #{id}")
     void deleteById(Long id);
 
-    @Update("update today set status = 2 where id = #{id}")
-    void completeById(Long id);
+    @Update("update today set status = #{status} where id = #{id}")
+    void updateStatusById(Long id, Integer status);
 }
 
 
