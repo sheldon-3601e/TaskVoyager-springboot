@@ -35,10 +35,10 @@ public class Today implements Serializable {
     // 内容
     private String name;
 
-    // 优先级，1：低，2：中，3：高
+    // 优先级，1：low，2：Medium，3：high
     private Integer priority;
 
-    // 状态，1：未完成，2：已完成
+    // 状态，1：未完成，2：已完成 3.计时中
     private Integer status;
 
     // 创建时间

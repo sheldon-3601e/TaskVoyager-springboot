@@ -31,7 +31,7 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
-    @GetMapping("/query")
+    @GetMapping("/query/all")
     @ApiOperation("根据用户id查询标签")
     public Result<List<Tag>> queryTag() {
         log.info("查询标签");

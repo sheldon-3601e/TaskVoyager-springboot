@@ -21,7 +21,7 @@ public class TodayTime implements Serializable {
     /**
      *
      */
-    private byte[] id;
+    private Long id;
 
     /**
      *
@@ -51,16 +51,16 @@ public class TodayTime implements Serializable {
     /**
      *
      */
-    private byte[] empId;
+    private Long empId;
 
     /**
      *
      */
-    private byte[] tagId;
+    private Long tagId;
 
     /**
      *
      */
-    private byte[] todayId;
+    private Long todayId;
 
 }

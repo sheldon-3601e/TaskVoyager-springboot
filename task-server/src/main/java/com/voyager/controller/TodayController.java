@@ -66,7 +66,7 @@ public class TodayController {
         return Result.success(todayByIdVO);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @ApiOperation("根据id修改今日代办")
     public Result updateById(@RequestBody TodayUpdateDTO todayUpdateDTO) {
         log.info("根据id修改今日代办：{}", todayUpdateDTO);
