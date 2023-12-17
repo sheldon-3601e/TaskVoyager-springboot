@@ -1,6 +1,5 @@
 package com.voyager.vo;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +19,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeLoginVO implements Serializable {
+public class UserLoginVO implements Serializable {
 
     @ApiModelProperty("主键值")
     private Long id;

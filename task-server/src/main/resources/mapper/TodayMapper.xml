@@ -19,8 +19,4 @@
         where id = #{id}
     </update>
 
-    <select id="query" resultType="Today">
-        select * from today
-                 where user_id = #{userId} and DATE(create_time) = #{localDate} and status = #{status}
-    </select>
 </mapper>

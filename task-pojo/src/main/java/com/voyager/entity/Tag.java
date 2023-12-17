@@ -40,6 +40,6 @@ public class Tag implements Serializable {
     /**
      * 
      */
-    private Long empId;
+    private Long userId;
 
 }

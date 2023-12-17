@@ -5,12 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 /**
- * @ClassName TodayUncompletedVO
+ * @ClassName TagQueryVo
  * @Author 26483
- * @Date 2023/12/14 19:59
+ * @Date 2023/12/17 18:16
  * @Version 1.0
  * @Description TODO
  */
@@ -18,10 +16,10 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TodayQueryCompletedVO implements Serializable {
+public class TagQueryVo {
 
     private Long id;
-
     private String name;
+    private Long userId;
 
 }

@@ -1,6 +1,6 @@
 package com.voyager.service;
 
-import com.voyager.dto.EmployeeLoginDTO;
+import com.voyager.dto.UserLoginDTO;
 import com.voyager.entity.User;
 
 /**
@@ -12,8 +12,8 @@ public interface UserService {
 
     /**
      * 用户登录
-     * @param employeeLoginDTO
+     * @param userLoginDTO
      * @return
      */
-    User login(EmployeeLoginDTO employeeLoginDTO);
+    User login(UserLoginDTO userLoginDTO);
 }

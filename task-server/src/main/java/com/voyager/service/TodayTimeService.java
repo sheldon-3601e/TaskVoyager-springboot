@@ -14,4 +14,10 @@ public interface TodayTimeService  {
      * @param todayId
      */
     void start(Long todayId);
+
+    /**
+     * 结束计时
+     * @param todayId
+     */
+    void stop(Long todayId);
 }

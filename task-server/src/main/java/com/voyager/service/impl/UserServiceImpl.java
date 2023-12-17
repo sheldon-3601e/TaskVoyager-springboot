@@ -1,7 +1,7 @@
 package com.voyager.service.impl;
 
 import com.voyager.constant.MessageConstant;
-import com.voyager.dto.EmployeeLoginDTO;
+import com.voyager.dto.UserLoginDTO;
 import com.voyager.entity.User;
 import com.voyager.exception.LoginFailedException;
 import com.voyager.mapper.UserMapper;
@@ -21,10 +21,10 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User login(EmployeeLoginDTO employeeLoginDTO) {
+    public User login(UserLoginDTO userLoginDTO) {
 
-        String username = employeeLoginDTO.getUsername();
-        String password = employeeLoginDTO.getPassword();
+        String username = userLoginDTO.getUsername();
+        String password = userLoginDTO.getPassword();
 
         User user = userMapper.login(username);
         if (user == null) {

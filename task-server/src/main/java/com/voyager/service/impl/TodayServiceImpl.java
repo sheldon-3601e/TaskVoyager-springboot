@@ -3,7 +3,6 @@ package com.voyager.service.impl;
 
 import com.voyager.constant.StatusConstant;
 import com.voyager.dto.TodayAdd;
-import com.voyager.dto.TodayQueryDTO;
 import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
 import com.voyager.entity.TodayTime;
@@ -11,13 +10,12 @@ import com.voyager.mapper.TodayMapper;
 import com.voyager.mapper.TodayTimeMapper;
 import com.voyager.service.TodayService;
 import com.voyager.vo.TodayByIdVO;
-import com.voyager.vo.TodayQueryCompletedVO;
+import com.voyager.vo.TodayQueryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,12 +39,12 @@ public class TodayServiceImpl implements TodayService {
         Long id = System.currentTimeMillis();
         Today today = Today.builder()
                 .id(id)
-                .name(todayAdd.getName())
-                .status(1)
-                .createTime(LocalDateTime.now())
                 .userId(userId)
+                .name(todayAdd.getName())
+                .status(StatusConstant.UNCOMPLETED)
+                .createTime(LocalDateTime.now())
                 .tagId(todayAdd.getTagId())
-                .priority(1)
+                .priority(todayAdd.getPriority())
                 .build();
         // 添加今日代办
         todayMapper.add(today);
@@ -60,29 +58,6 @@ public class TodayServiceImpl implements TodayService {
                 .todayId(today.getId())
                 .build();
         todayTimeMapper.save(todayTime);
-    }
-
-    @Override
-    public List<TodayQueryCompletedVO> queryCompleted() {
-        // TODO 获取用户id
-        Long userId = 1L;
-        LocalDate today = LocalDate.now();
-
-        TodayQueryDTO todayQueryDTO = new TodayQueryDTO();
-        todayQueryDTO.setUserId(userId);
-        todayQueryDTO.setLocalDate(today);
-        todayQueryDTO.setStatus(2);
-
-        List<Today> todayList = todayMapper.query(todayQueryDTO);
-        List<TodayQueryCompletedVO> list = new ArrayList<>();
-        for (Today t : todayList) {
-            TodayQueryCompletedVO todayQueryUncompletedVO = TodayQueryCompletedVO.builder()
-                    .id(t.getId())
-                    .name(t.getName())
-                    .build();
-            list.add(todayQueryUncompletedVO);
-        }
-        return list;
     }
 
     @Override
@@ -107,7 +82,7 @@ public class TodayServiceImpl implements TodayService {
     public void deleteById(Long id) {
         todayMapper.deleteById(id);
 
-        // TODO 删除今日代办时间
+        todayTimeMapper.deleteByTodayId(id);
     }
 
     @Override
@@ -115,18 +90,19 @@ public class TodayServiceImpl implements TodayService {
         todayMapper.updateStatusById(id, StatusConstant.COMPLETED);
     }
 
+
     @Override
-    public List<Today> queryUncompleted() {
+    public List<TodayQueryVO> query() {
+
         // TODO 获取用户id
         Long userId = 1L;
+
+        // 获取今日代办时间
         LocalDate today = LocalDate.now();
-        TodayQueryDTO todayQueryDTO = new TodayQueryDTO();
-        todayQueryDTO.setUserId(userId);
-        todayQueryDTO.setLocalDate(today);
-        todayQueryDTO.setStatus(1);
 
-        return todayMapper.query(todayQueryDTO);
+        List<TodayQueryVO> queryVOList =  todayMapper.query(userId, today);
 
+        return queryVOList;
 
     }
 }

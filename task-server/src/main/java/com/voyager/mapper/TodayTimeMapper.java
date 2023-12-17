@@ -2,9 +2,7 @@ package com.voyager.mapper;
 
 
 import com.voyager.entity.TodayTime;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.time.LocalTime;
 
@@ -24,6 +22,15 @@ public interface TodayTimeMapper {
 
     @Update("update today_time set start_time = #{currentTime} where today_id = #{todayId}")
     void start(Long todayId, LocalTime currentTime);
+
+    @Update("update today_time set stop_time = #{stopTime}, time = #{hours} where today_id = #{todayId}")
+    void stop(Long todayId, LocalTime stopTime, long hours);
+
+    @Select("select * from today_time where today_id = #{todayId}")
+    TodayTime getById(Long todayId);
+
+    @Delete("delete from today_time where today_id = #{id}")
+    void deleteByTodayId(Long id);
 }
 
 

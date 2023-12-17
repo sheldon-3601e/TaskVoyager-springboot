@@ -1,10 +1,13 @@
 package com.voyager.controller;
 
-import com.voyager.dto.EmployeeLoginDTO;
+import com.voyager.constant.JwtClaimsConstant;
+import com.voyager.dto.UserLoginDTO;
 import com.voyager.entity.User;
+import com.voyager.properties.JwtProperties;
 import com.voyager.result.Result;
 import com.voyager.service.UserService;
-import com.voyager.vo.EmployeeLoginVO;
+import com.voyager.utils.JwtUtil;
+import com.voyager.vo.UserLoginVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ClassName employeeController
@@ -29,22 +35,31 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JwtProperties jwtProperties;
 
     @PostMapping("/login")
     @ApiOperation(value = "用户登录")
-    public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
-        log.info("用户登录：{}", employeeLoginDTO);
+    public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
+        log.info("用户登录：{}", userLoginDTO);
 
-        User user = userService.login(employeeLoginDTO);
+        User user = userService.login(userLoginDTO);
 
-        // TODO 登录成功后，生成jwt令牌
+        // 登录成功后，生成jwt令牌
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(JwtClaimsConstant.USER_ID, user.getId());
+        String token = JwtUtil.createJWT(
+                jwtProperties.getAdminSecretKey(),
+                jwtProperties.getAdminTtl(),
+                claims
+        );
 
-        EmployeeLoginVO employeeLoginVO = EmployeeLoginVO.builder()
+        UserLoginVO userLoginVO = UserLoginVO.builder()
                 .id(user.getId())
                 .userName(user.getUsername())
-                .token("202108212021082120210821")
+                .token(token)
                 .build();
-        return Result.success(employeeLoginVO);
+        return Result.success(userLoginVO);
     }
 
 }

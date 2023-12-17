@@ -2,11 +2,10 @@ package com.voyager.controller;
 
 import com.voyager.dto.TodayAdd;
 import com.voyager.dto.TodayUpdateDTO;
-import com.voyager.entity.Today;
 import com.voyager.result.Result;
 import com.voyager.service.TodayService;
 import com.voyager.vo.TodayByIdVO;
-import com.voyager.vo.TodayQueryCompletedVO;
+import com.voyager.vo.TodayQueryVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -31,30 +30,22 @@ public class TodayController {
     @Autowired
     private TodayService todayService;
 
+    @PostMapping("/query")
+    @ApiOperation("查询今日代办")
+    public Result<List<TodayQueryVO>> query() {
+        log.info("查询今日代办");
+
+        List<TodayQueryVO> todayList = todayService.query();
+        return Result.success(todayList);
+    }
+
     @PostMapping("/add")
+    @ApiOperation("添加今日代办")
     public Result add(@RequestBody TodayAdd todayAdd) {
         log.info("添加今日代办：{}", todayAdd);
 
         todayService.add(todayAdd);
         return Result.success();
-    }
-
-    @GetMapping("/query/uncompleted")
-    @ApiOperation("查询今日代办-未完成")
-    public Result<List<Today>> queryUncompleted() {
-        log.info("查询今日代办-未完成");
-
-        List<Today> todayList = todayService.queryUncompleted();
-        return Result.success(todayList);
-    }
-
-    @GetMapping("/query/completed")
-    @ApiOperation("查询今日代办-已完成")
-    public Result<List<TodayQueryCompletedVO>> queryCompleted() {
-        log.info("查询今日代办-已完成");
-
-        List<TodayQueryCompletedVO> uncompletedVOList = todayService.queryCompleted();
-        return Result.success(uncompletedVOList);
     }
 
     @GetMapping("/query/{id}")

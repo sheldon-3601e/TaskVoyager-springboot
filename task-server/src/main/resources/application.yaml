@@ -15,3 +15,8 @@ mybatis:
   type-aliases-package: com.voyager.entity
   configuration:
     map-underscore-to-camel-case: true
+tsk:
+  jwt:
+    admin-secret-key: sheldon_kxx
+    admin-ttl: 7200000
+    admin-token-name: token

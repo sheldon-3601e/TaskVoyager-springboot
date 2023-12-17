@@ -35,12 +35,12 @@ public class TodayTimeController {
         return Result.success();
     }
 
-//    @PutMapping("/start/{todayId}")
-//    @ApiOperation("开始计时")
-//    public Result start(@PathVariable Long todayId) {
-//
-//        todayTimeService.start(todayId);
-//        return Result.success();
-//    }
+    @PutMapping("/stop/{todayId}")
+    @ApiOperation("结束计时")
+    public Result stop(@PathVariable Long todayId) {
+
+        todayTimeService.stop(todayId);
+        return Result.success();
+    }
 
 }
