@@ -6,10 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName TimeController
@@ -30,15 +27,16 @@ public class TodayTimeController {
     @PutMapping("/start/{todayId}")
     @ApiOperation("开始计时")
     public Result start(@PathVariable Long todayId) {
+        log.info("开始计时：{}", todayId);
 
         todayTimeService.start(todayId);
         return Result.success();
     }
 
-    @PutMapping("/stop/{todayId}")
+    @PutMapping("/end/{todayId}")
     @ApiOperation("结束计时")
     public Result stop(@PathVariable Long todayId) {
-
+        log.info("结束计时：{}", todayId);
         todayTimeService.stop(todayId);
         return Result.success();
     }

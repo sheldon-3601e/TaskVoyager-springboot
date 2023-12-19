@@ -30,7 +30,7 @@ public class TodayController {
     @Autowired
     private TodayService todayService;
 
-    @PostMapping("/query")
+    @GetMapping("/query")
     @ApiOperation("查询今日代办")
     public Result<List<TodayQueryVO>> query() {
         log.info("查询今日代办");

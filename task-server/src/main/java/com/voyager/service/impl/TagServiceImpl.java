@@ -39,7 +39,7 @@ public class TagServiceImpl implements TagService {
         // 先查询该标签是否在存在
         Tag tag = tagMapper.selectById(tagDTO.getId());
         if (tag == null) {
-            // 如果存在，就直接返回
+            // 如果不存在，就直接返回
             throw new RuntimeException(MessageConstant.TAG_NOT_EXIST);
         }
         // 如果不存在，再修改

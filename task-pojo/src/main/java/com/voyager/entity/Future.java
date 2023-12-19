@@ -21,7 +21,7 @@ public class Future implements Serializable {
      *
      */
 
-    private byte[] id;
+    private Long id;
 
     /**
      *
@@ -51,16 +51,16 @@ public class Future implements Serializable {
     /**
      *
      */
-    private byte[] empId;
+    private Long userId;
 
     /**
      *
      */
-    private byte[] detailId;
+    private Long detailId;
 
     /**
      *
      */
-    private byte[] tagId;
+    private Long tagId;
 
 }

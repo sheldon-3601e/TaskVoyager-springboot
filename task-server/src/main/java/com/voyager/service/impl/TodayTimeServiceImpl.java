@@ -61,6 +61,9 @@ public class TodayTimeServiceImpl implements TodayTimeService {
 
         // 修改today状态
         todayMapper.updateStatusById(todayId, StatusConstant.UNCOMPLETED);
+
+        // 修改今日状态为未完成
+        todayMapper.updateStatusById(todayId, StatusConstant.UNCOMPLETED);
     }
 }
 

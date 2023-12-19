@@ -21,7 +21,7 @@ public class Detail implements Serializable {
      * 
      */
 
-    private byte[] id;
+    private Long id;
 
     /**
      * 
@@ -36,12 +36,12 @@ public class Detail implements Serializable {
     /**
      * 
      */
-    private byte[] empId;
+    private Long userId;
 
     /**
      * 
      */
-    private byte[] futureId;
+    private Long futureId;
 
 
 

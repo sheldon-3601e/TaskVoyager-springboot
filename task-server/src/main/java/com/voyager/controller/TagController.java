@@ -58,7 +58,7 @@ public class TagController {
         return Result.success();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     @ApiOperation("删除")
     public Result deleteTag(@PathVariable Long id) {
         log.info("删除标签");

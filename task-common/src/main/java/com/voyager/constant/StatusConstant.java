@@ -9,8 +9,8 @@ public class StatusConstant {
     public static final Integer UNCOMPLETED = 1;
 
     //已完成
-    public static final Integer COMPLETED = 2;
+    public static final Integer COMPLETED = 0;
 
     // 进行中
-    public static final Integer DOING = 3;
+    public static final Integer DOING = 2;
 }
