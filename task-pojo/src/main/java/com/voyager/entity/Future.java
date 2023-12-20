@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 /**
@@ -31,7 +32,7 @@ public class Future implements Serializable {
     /**
      *
      */
-    private String status;
+    private Integer status;
 
     /**
      *
@@ -46,7 +47,7 @@ public class Future implements Serializable {
     /**
      *
      */
-    private String black02;
+    private LocalDate createTime;
 
     /**
      *
@@ -56,7 +57,7 @@ public class Future implements Serializable {
     /**
      *
      */
-    private Long detailId;
+    private LocalDate deadline;
 
     /**
      *

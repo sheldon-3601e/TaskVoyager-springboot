@@ -1,10 +1,12 @@
 package com.voyager.controller;
 
+import com.voyager.dto.FutureSaveDTO;
 import com.voyager.result.Result;
 import com.voyager.service.FutureService;
 import com.voyager.vo.FutureQueryVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +55,16 @@ public class FutureController {
         log.info("完成未来计划：{}", id);
 
         futureService.finishFuture(id);
+        return Result.success();
+    }
+
+    // 新增或修改未来计划
+    @PostMapping("/save")
+    @ApiOperation("新增或修改未来计划")
+    public Result save(@RequestBody FutureSaveDTO futureSaveDTO) {
+        log.info("新增或修改未来计划：{}", futureSaveDTO);
+
+        futureService.save(futureSaveDTO);
         return Result.success();
     }
 

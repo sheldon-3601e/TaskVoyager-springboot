@@ -1,6 +1,7 @@
 package com.voyager.service;
 
 
+import com.voyager.dto.FutureSaveDTO;
 import com.voyager.vo.FutureQueryVO;
 
 import java.util.List;
@@ -30,4 +31,10 @@ public interface FutureService{
      * @param id
      */
     void finishFuture(Long id);
+
+    /**
+     * 保存未来计划
+     * @param futureSaveDTO
+     */
+    void save(FutureSaveDTO futureSaveDTO);
 }
