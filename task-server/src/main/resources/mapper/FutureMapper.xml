@@ -18,6 +18,29 @@
             <result property="status" column="detail_status"/>
         </collection>
     </resultMap>
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into future (name, status, description, tag_id, deadline, create_time, user_id)
+        values (#{name}, #{status}, #{description}, #{tagId}, #{deadline}, #{createTime}, #{userId})
+    </insert>
+
+    <update id="updateById">
+        update future
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="tagId != null">
+                tag_id = #{tagId},
+            </if>
+            <if test="deadline != null">
+                deadline = #{deadline},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 
     <select id="queryFuture" resultMap="futureQuery">
         SELECT

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.voyager.mapper.DetailMapper">
+
+
+    <insert id="insertBatch">
+        insert into detail (name, status, future_id,user_id)
+        values
+        <foreach collection="detailList" item="detail" separator=",">
+            (#{detail.name}, #{detail.status}, #{detail.futureId},#{detail.userId})
+        </foreach>
+    </insert>
+</mapper>

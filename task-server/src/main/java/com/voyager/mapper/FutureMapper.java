@@ -1,8 +1,11 @@
 package com.voyager.mapper;
 
 
+import com.voyager.dto.FutureSaveDTO;
+import com.voyager.entity.Future;
 import com.voyager.vo.FutureQueryVO;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Update;
 
@@ -42,6 +45,18 @@ public interface FutureMapper {
      */
     @Update("update future set status = #{completed} where id = #{id} and user_id = #{userId}")
     void finishFuture(Long id, Long userId, Integer completed);
+
+    /**
+     * 添加未来计划
+     * @param future
+     */
+    Long save(Future future);
+
+    /**
+     * 更新未来计划
+     * @param futureSaveDTO
+     */
+    void updateById(FutureSaveDTO futureSaveDTO);
 }
 
 

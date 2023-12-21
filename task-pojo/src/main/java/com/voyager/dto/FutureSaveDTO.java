@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @ClassName FutureSaveDTO
@@ -18,13 +19,11 @@ import java.util.List;
 @ApiModel(value = "修改或保存时传递的数据模型")
 public class FutureSaveDTO {
 
-    private Long id;
+//    private Long id;
     private String name;
-    private String status;
     private String description;
-    private Long tagId;
-    private LocalDate deadline;
-    private LocalDate createTime;
-    private List<Detail> detailList;
+    private Long tagId;  // Assuming tagId can be null
+    private LocalDate deadline;  // Using Optional for nullable LocalDate
+//    private List<Detail> detailList;
 
 }

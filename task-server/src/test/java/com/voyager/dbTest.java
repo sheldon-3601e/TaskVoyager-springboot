@@ -1,6 +1,10 @@
 package com.voyager;
 
+import com.voyager.entity.Detail;
+import com.voyager.entity.Future;
 import com.voyager.entity.TodayTime;
+import com.voyager.mapper.DetailMapper;
+import com.voyager.mapper.FutureMapper;
 import com.voyager.mapper.TodayTimeMapper;
 import com.voyager.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
@@ -12,6 +16,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 
 /**
  * @ClassName com.voyager.dbTest
@@ -27,6 +32,10 @@ public class dbTest {
     private UserMapper userMapper;
     @Autowired
     private TodayTimeMapper todayTimeMapper;
+    @Autowired
+    private FutureMapper futureMapper;
+    @Autowired
+    private DetailMapper detailMapper;
 
     @Test
     public void test() throws Exception {
@@ -56,6 +65,35 @@ public class dbTest {
 
 //        long hours = Duration.between((Temporal) todayTime.getStartTime(), stopTime).toHours();
 //        System.out.println(hours);
+    }
+
+    @Test
+    public void test04() {
+        Future test = Future.builder()
+                .name("测试")
+                .status(1)
+                .description("测试")
+                .tagId(1L)
+                .deadline(LocalDate.now())
+                .createTime(LocalDate.now())
+                .userId(1L)
+                .build();
+        futureMapper.save(test);
+        System.out.println(test.getId());
+    }
+
+    @Test
+    public void test05() {
+        Detail detail = Detail.builder()
+                .name("测试")
+                .status(1)
+                .userId(1L)
+                .futureId(6L).build();
+        ArrayList<Detail> detailList = new ArrayList<Detail>();
+        detailList.add(detail);
+        detailList.add(detail);
+        detailList.add(detail);
+        detailMapper.insertBatch(detailList);
     }
 
 }
