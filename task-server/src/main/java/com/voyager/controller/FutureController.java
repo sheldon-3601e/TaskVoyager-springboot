@@ -4,14 +4,11 @@ import com.voyager.dto.FutureSaveDTO;
 import com.voyager.result.Result;
 import com.voyager.service.FutureService;
 import com.voyager.vo.FutureQueryVO;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -68,4 +65,15 @@ public class FutureController {
         return Result.success();
     }
 
+    @PostMapping("/test")
+    public Result test(@RequestBody TestObj testObj) {
+        log.info("testObj: {}", testObj);
+        return Result.success();
+    }
+
+}
+
+class TestObj {
+    private String name;
+    private Integer age;
 }

@@ -19,11 +19,11 @@ import java.util.Optional;
 @ApiModel(value = "修改或保存时传递的数据模型")
 public class FutureSaveDTO {
 
-//    private Long id;
+    private Long id;
     private String name;
     private String description;
     private Long tagId;  // Assuming tagId can be null
     private LocalDate deadline;  // Using Optional for nullable LocalDate
-//    private List<Detail> detailList;
+    private List<Detail> detailList;
 
 }

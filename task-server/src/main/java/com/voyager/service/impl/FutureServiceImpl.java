@@ -65,56 +65,58 @@ public class FutureServiceImpl implements FutureService {
 
     @Override
     public void save(FutureSaveDTO futureSaveDTO) {
-//        // 进行判断
-//        // TODO 获取当前登录用户的id
-//        Long userId = 1L;
-//        Long futureId = futureSaveDTO.getId();
-//
-//        // 如果id为空，说明是新增
-//        if (futureId == null) {
-//            try {
-//                // 先添加未来计划
-//                Future future = new Future();
-//                BeanUtils.copyProperties(future, futureSaveDTO);
-//                future.setUserId(userId);
-//                future.setCreateTime(LocalDate.now());
-//                futureId = futureMapper.save(future);
-//
-//                insertDetailBatch(futureSaveDTO, futureId, userId);
-//
-//
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//
-//        }
-//
-//        // 如果id不为空，说明是修改
-//        else {
-//            // 先修改未来计划
-//            futureMapper.updateById(futureSaveDTO);
-//            // 删除细节步骤
-//            detailMapper.deleteByFutureId(futureId);
-//
-//            // 在添加细节步骤
-//            insertDetailBatch(futureSaveDTO, futureId, userId);
-//        }
+        // 进行判断
+        // TODO 获取当前登录用户的id
+        Long userId = 1L;
+        Long futureId = futureSaveDTO.getId();
+
+        // 如果id为空，说明是新增
+        if (futureId == null) {
+            try {
+                // 先添加未来计划
+                Future future = new Future();
+                BeanUtils.copyProperties(future, futureSaveDTO);
+                future.setUserId(userId);
+                future.setCreateTime(LocalDate.now());
+                future.setStatus(StatusConstant.UNCOMPLETED);
+                futureMapper.save(future);
+                futureId = future.getId();
+
+                insertDetailBatch(futureSaveDTO, futureId, userId);
+
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+        // 如果id不为空，说明是修改
+        else {
+            // 先修改未来计划
+            futureMapper.updateById(futureSaveDTO);
+            // 删除细节步骤
+            detailMapper.deleteByFutureId(futureId);
+
+            // 在添加细节步骤
+            insertDetailBatch(futureSaveDTO, futureId, userId);
+        }
     }
 
     private void insertDetailBatch(FutureSaveDTO futureSaveDTO, Long futureId, Long userId) {
-//        // 在添加细节步骤
-//        List<Detail> detailList = futureSaveDTO.getDetailList();
-//        if (detailList == null) {
-//            return;
-//        }
-//        // 添加未来计划id
-//        detailList.forEach(detail -> {
-//            detail.setFutureId(futureId);
-//            detail.setUserId(userId);
-//            detail.setStatus(StatusConstant.UNCOMPLETED);
-//        });
-//        // 批量添加
-//        detailMapper.insertBatch(detailList);
+        // 在添加细节步骤
+        List<Detail> detailList = futureSaveDTO.getDetailList();
+        if (detailList == null || detailList.isEmpty()) {
+            return;
+        }
+        // 添加未来计划id
+        detailList.forEach(detail -> {
+            detail.setFutureId(futureId);
+            detail.setUserId(userId);
+            detail.setStatus(StatusConstant.UNCOMPLETED);
+        });
+        // 批量添加
+        detailMapper.insertBatch(detailList);
     }
 }
 
