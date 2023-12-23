@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voyager.mapper.StatisticsMapper">
+
+    <select id="queryTotalTime" resultType="java.lang.Integer">
+        SELECT SUM(time)
+        FROM today_time
+        WHERE today_id IN (SELECT id
+                           FROM today
+                           WHERE create_time &gt;= #{start}
+                             AND create_time &lt; #{end})
+          AND tag_id = ${tagId}
+
+    </select>
+</mapper>

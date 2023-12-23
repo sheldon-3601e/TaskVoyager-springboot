@@ -10,6 +10,7 @@ import com.voyager.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import sun.util.resources.LocaleData;
 
 import java.sql.Timestamp;
 import java.time.Duration;
@@ -94,6 +95,15 @@ public class dbTest {
         detailList.add(detail);
         detailList.add(detail);
         detailMapper.insertBatch(detailList);
+    }
+
+    @Test
+    public void test06() {
+        LocalDate now = LocalDate.now();
+        for (int i = 1; i <= 3 ; i++) {
+            now = now.minusDays(1);
+            System.out.println(now);
+        }
     }
 
 }

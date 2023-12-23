@@ -4,6 +4,7 @@ package com.voyager.mapper;
 import com.voyager.entity.TodayTime;
 import org.apache.ibatis.annotations.*;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
@@ -31,6 +32,15 @@ public interface TodayTimeMapper {
 
     @Delete("delete from today_time where today_id = #{id}")
     void deleteByTodayId(Long id);
+
+    /**
+     * 查询某个标签在某个时间段内的总时间
+     * @param tagId
+     * @param start
+     * @param end
+     * @return
+     */
+    Integer queryTotalTime(Long tagId, LocalDate start, LocalDate end);
 }
 
 
