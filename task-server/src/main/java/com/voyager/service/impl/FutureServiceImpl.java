@@ -2,6 +2,7 @@ package com.voyager.service.impl;
 
 
 import com.voyager.constant.StatusConstant;
+import com.voyager.context.BaseContext;
 import com.voyager.dto.FutureSaveDTO;
 import com.voyager.entity.Detail;
 import com.voyager.entity.Future;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class FutureServiceImpl implements FutureService {
     public List<FutureQueryVO> queryFuture() {
 
         // TODO 获取当前登录用户的id
-        Long userId = 1L;
+        Long userId = BaseContext.getCurrentId();
         List<FutureQueryVO> list = futureMapper.queryFuture(userId);
 
         return list;
