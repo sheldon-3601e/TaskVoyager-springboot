@@ -2,6 +2,7 @@ package com.voyager.service.impl;
 
 
 import com.voyager.constant.StatusConstant;
+import com.voyager.context.BaseContext;
 import com.voyager.dto.TodayAdd;
 import com.voyager.dto.TodayUpdateDTO;
 import com.voyager.entity.Today;
@@ -33,8 +34,8 @@ public class TodayServiceImpl implements TodayService {
 
     @Override
     public void add(TodayAdd todayAdd) {
-        // TODO 获取用户id
-        Long userId = 1L;
+
+        Long userId = BaseContext.getCurrentId();
         // 生成时间戳作为id
         Long id = System.currentTimeMillis();
         Today today = Today.builder()
@@ -49,7 +50,6 @@ public class TodayServiceImpl implements TodayService {
         // 添加今日代办
         todayMapper.add(today);
 
-        // TODO 添加今日代办时间
         id = System.currentTimeMillis();
         TodayTime todayTime = TodayTime.builder()
                 .id(id)
@@ -94,8 +94,7 @@ public class TodayServiceImpl implements TodayService {
     @Override
     public List<TodayQueryVO> query() {
 
-        // TODO 获取用户id
-        Long userId = 1L;
+        Long userId = BaseContext.getCurrentId();
 
         // 获取今日代办时间
         LocalDate today = LocalDate.now();

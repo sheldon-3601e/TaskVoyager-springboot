@@ -1,5 +1,6 @@
 package com.voyager.service.impl;
 
+import com.voyager.context.BaseContext;
 import com.voyager.mapper.StatisticsMapper;
 import com.voyager.mapper.TagMapper;
 import com.voyager.mapper.TodayMapper;
@@ -69,8 +70,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     public List<TagDataVO> getTagTime(Integer number) {
 
         // 获取标签列表
-        // TODO: 获取当前用户id
-        Long userId = 1L;
+        Long userId = BaseContext.getCurrentId();
 
         // 解析时间
         LocalDate end = LocalDate.now();

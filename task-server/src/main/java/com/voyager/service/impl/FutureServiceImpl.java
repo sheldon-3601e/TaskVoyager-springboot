@@ -38,7 +38,6 @@ public class FutureServiceImpl implements FutureService {
     @Override
     public List<FutureQueryVO> queryFuture() {
 
-        // TODO 获取当前登录用户的id
         Long userId = BaseContext.getCurrentId();
         List<FutureQueryVO> list = futureMapper.queryFuture(userId);
 
@@ -48,8 +47,7 @@ public class FutureServiceImpl implements FutureService {
     @Override
     public void deleteFuture(Long id) {
 
-        // TODO 获取当前登录用户的id
-        Long userId = 1L;
+        Long userId = BaseContext.getCurrentId();
 
         futureMapper.deleteFuture(id, userId);
 
@@ -58,8 +56,7 @@ public class FutureServiceImpl implements FutureService {
     @Override
     public void finishFuture(Long id) {
 
-        // TODO 获取当前登录用户的id
-        Long userId = 1L;
+        Long userId = BaseContext.getCurrentId();
 
         futureMapper.finishFuture(id, userId, StatusConstant.COMPLETED);
 
@@ -68,8 +65,7 @@ public class FutureServiceImpl implements FutureService {
     @Override
     public void save(FutureSaveDTO futureSaveDTO) {
         // 进行判断
-        // TODO 获取当前登录用户的id
-        Long userId = 1L;
+        Long userId = BaseContext.getCurrentId();
         Long futureId = futureSaveDTO.getId();
 
         // 如果id为空，说明是新增

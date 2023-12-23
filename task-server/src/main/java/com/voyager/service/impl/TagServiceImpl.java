@@ -2,6 +2,7 @@ package com.voyager.service.impl;
 
 
 import com.voyager.constant.MessageConstant;
+import com.voyager.context.BaseContext;
 import com.voyager.dto.TagDTO;
 import com.voyager.entity.Tag;
 import com.voyager.mapper.TagMapper;
@@ -27,8 +28,7 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<TagQueryVo> queryByUserId() {
 
-        // TODO 获取当前登录用户的id
-        Long userId = 1L;
+        Long userId = BaseContext.getCurrentId();
 
         return tagMapper.queryByUserId(userId);
     }
@@ -57,8 +57,8 @@ public class TagServiceImpl implements TagService {
             throw new RuntimeException(MessageConstant.TAG_ALREADY_EXIST);
         }
         Long id = IdUtil.getId();
-        // TODO 获取当前登录用户的id
-        Long userId = 1L;
+
+        Long userId = BaseContext.getCurrentId();
 
         tag = Tag.builder()
                 .id(id)
