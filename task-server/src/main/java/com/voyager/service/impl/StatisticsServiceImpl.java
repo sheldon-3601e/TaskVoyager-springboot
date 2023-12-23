@@ -38,8 +38,8 @@ public class StatisticsServiceImpl implements StatisticsService {
     public TodayDataVO getToday(Integer number) {
 
         List<String> xAxis = new ArrayList<>();
-        List<Integer> totalData = new ArrayList<>();
         List<Integer> finishData = new ArrayList<>();
+        List<Integer> unFinishedData = new ArrayList<>();
 
         // 解析时间区间
         LocalDate now = LocalDate.now();
@@ -49,18 +49,18 @@ public class StatisticsServiceImpl implements StatisticsService {
             // 获取每日的日期
             now = now.minusDays(1);
 
-            Integer total = statisticsMapper.countTotal(now);
             Integer finish = statisticsMapper.countFinish(now);
+            Integer unFinish = statisticsMapper.countUnfinished(now);
 
             // 封装数据
             xAxis.add(now.toString());
-            totalData.add(total);
+            unFinishedData.add(unFinish);
             finishData.add(finish);
         }
 
         return TodayDataVO.builder()
                 .xAxis(xAxis)
-                .totalData(totalData)
+                .unFinishData(unFinishedData)
                 .finishData(finishData)
                 .build();
     }

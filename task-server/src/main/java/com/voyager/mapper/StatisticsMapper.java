@@ -20,8 +20,8 @@ public interface StatisticsMapper {
      * @param date
      * @return
      */
-    @Select("select count(*) from today where create_time = #{date}")
-    Integer countTotal(LocalDate date);
+    @Select("select count(*) from today where create_time = #{date} and status != 0")
+    Integer countUnfinished(LocalDate date);
 
     /**
      * 查询今日完成数量

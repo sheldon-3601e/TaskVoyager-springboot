@@ -26,7 +26,7 @@ public class TodayDataVO {
 
     private List<String> xAxis;
     private List<Integer> yAxis;
-    private List<Integer> totalData;
+    private List<Integer> unFinishData;
     private List<Integer> finishData;
 
 }
